@@ -1,19 +1,26 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Header from './components/Header';
-import ProductListing from './pages/ProductListing';
-import ThankYouPage from './pages/ThankYouPage';
+import React from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './App.css'
+import Container from 'react-bootstrap/Container'
+import {Route, Routes} from 'react-router-dom'
+import Invoice from './pages/Invoice'
+import InvoiceList from './pages/InvoiceList'
+import InvoiceBulkEdit from './pages/InvoiceBulkEdit'
 
 const App = () => {
   return (
-    <Router>
-      <Header />
-      <Switch>
-        <Route path="/" exact component={ProductListing} />
-        <Route path="/thank-you" component={ThankYouPage} />
-      </Switch>
-    </Router>
-  );
-};
+    <div className="App d-flex flex-column align-items-center justify-content-center w-100">
+      <Container>
+        <Routes>
+          <Route path="/" element={<InvoiceList />} />
+          <Route path="/create" element={<Invoice />} />
+          <Route path="/create/:id" element={<Invoice />} />
+          <Route path="/edit/:id" element={<Invoice />} />
+          <Route path="/bulk_edit" element={<InvoiceBulkEdit />} />
+        </Routes>
+      </Container>
+    </div>
+  )
+}
 
-export default App;
+export default App
